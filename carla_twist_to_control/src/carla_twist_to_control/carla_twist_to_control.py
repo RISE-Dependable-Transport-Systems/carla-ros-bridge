@@ -124,6 +124,9 @@ class TwistToVehicleControl(CompatibleNode):  # pylint: disable=too-few-public-m
                     -max(-self.max_steering_angle, twist.angular.z)
                     / self.max_steering_angle
                 )
+
+            if control.reverse:
+                control.steer = -control.steer
         try:
             self.pub.publish(control)
         except ROSException as e:
