@@ -199,7 +199,7 @@ class CarlaRosBridge(CompatibleNode):
                 self._registered_actors.remove(actor)
         return response
 
-    def get_blueprints(self, req):
+    def get_blueprints(self, req, response=None):
         response = roscomp.get_service_response(GetBlueprints)
         if req.filter:
             bp_filter = req.filter
@@ -475,6 +475,15 @@ def main(args=None):
             carla_world.tick()
 
         carla_bridge.initialize_bridge(carla_client.get_world(), parameters)
+
+        get_bp_request = roscomp.get_service_request(GetBlueprints)
+        get_bp_request.filter = '*'
+
+        response = carla_bridge.get_blueprints(get_bp_request)
+        # Log available blueprints
+        carla_bridge.logdebug('Available Blueprints:')
+        for bp in response.blueprints:
+            carla_bridge.logdebug('{}'.format(bp))
 
         carla_bridge.spin()
 

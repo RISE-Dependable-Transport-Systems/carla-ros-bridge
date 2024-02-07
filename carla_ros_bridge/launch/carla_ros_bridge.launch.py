@@ -6,6 +6,9 @@ def generate_launch_description():
     ld = launch.LaunchDescription(
         [
             launch.actions.DeclareLaunchArgument(
+                name='log_level', default_value='info', description='Log level'
+            ),
+            launch.actions.DeclareLaunchArgument(
                 name='host', default_value='localhost', description='IP of the CARLA server'
             ),
             launch.actions.DeclareLaunchArgument(
@@ -103,6 +106,11 @@ def generate_launch_description():
                             'ego_vehicle_role_name'
                         )
                     },
+                ],
+                arguments=[
+                    '--ros-args',
+                    '--log-level',
+                    launch.substitutions.LaunchConfiguration('log_level'),
                 ],
             ),
         ]
