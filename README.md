@@ -13,11 +13,23 @@ This version requires CARLA 0.9.15
 
 ## Getting started and documentation
 
-Installation instructions and further documentation of the ROS bridge and additional packages are found [__here__](https://carla.readthedocs.io/projects/ros-bridge/en/latest/).
+Installation instructions and further documentation of the ROS bridge and additional packages are found [**here**](https://carla.readthedocs.io/projects/ros-bridge/en/latest/).
 
 ## Issues
 
-* Compilation issues with rviz_carla_plugin, carla_ad_demo, pcl_recorder. Skip them during build step:
+- Compilation issues with rviz_carla_plugin, carla_ad_demo, pcl_recorder. Skip them during build step:
   ```
   colcon build --symlink-install --packages-skip rviz_carla_plugin carla_ad_demo pcl_recorder
   ```
+
+## Setup
+
+- `rosdep install -i --from-path src --rosdistro humble -r -y`
+- `pip install -r src/carla-ros-bridge/requirements.txt`
+
+## Usage
+
+```
+ros2 launch carla_ros_bridge carla_ros_bridge.launch.py passive:=True
+ros2 launch carla_ros_bridge carla_ros_bridge.launch.py passive:=True log_level:=debug
+```
