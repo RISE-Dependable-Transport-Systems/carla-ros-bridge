@@ -9,3 +9,4 @@ simple-pid
 networkx
 setuptools==58.2.0
 rosinstall-generator==0.1.22
+numpy>=1.23.5
