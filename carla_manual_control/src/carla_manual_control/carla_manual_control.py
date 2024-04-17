@@ -146,7 +146,7 @@ class ManualControl(CompatibleNode):
 
         do_quit = self.controller.parse_events(game_clock)
         if do_quit:
-            return
+            return True
         self.hud.tick(game_clock)
 
         if self._surface is not None:
@@ -235,7 +235,7 @@ class KeyboardControl(object):
                 elif event.key == K_b:
                     self.vehicle_control_manual_override = not self.vehicle_control_manual_override
                     self.set_vehicle_control_manual_override(self.vehicle_control_manual_override)
-                if event.key == K_q:
+                elif event.key == K_q:
                     self._control.gear = 1 if self._control.reverse else -1
                 elif event.key == K_m:
                     self._control.manual_gear_shift = not self._control.manual_gear_shift
