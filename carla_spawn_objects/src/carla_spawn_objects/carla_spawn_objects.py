@@ -354,7 +354,6 @@ def main(args=None):
     spawn_objects_node = None
     try:
         spawn_objects_node = CarlaSpawnObjects()
-        roscomp.on_shutdown(spawn_objects_node.destroy)
     except KeyboardInterrupt:
         roscomp.logerr("Could not initialize CarlaSpawnObjects. Shutting down.")
 
@@ -371,7 +370,7 @@ def main(args=None):
         except RuntimeError as e:
             roscomp.logfatal("Exception caught: {}".format(e))
         finally:
-            roscomp.shutdown()
+            spawn_objects_node.destroy()
 
 
 if __name__ == '__main__':
