@@ -17,15 +17,13 @@ Installation instructions and further documentation of the ROS bridge and additi
 
 ## Issues
 
-- Compilation issues with rviz_carla_plugin, carla_ad_demo, pcl_recorder. Skip them during build step:
-  ```
-  colcon build --symlink-install --packages-skip rviz_carla_plugin carla_ad_demo pcl_recorder
-  ```
+- There are known compilation issues with rviz_carla_plugin, carla_ad_demo, pcl_recorder plugins. These packages are configured to be ignored in the colcon build using a COLCON_IGNORE file.
 
 ## Setup
 
 - `rosdep install -i --from-path src --rosdistro humble -r -y`
 - `pip install -r src/carla-ros-bridge/requirements.txt`
+- `colcon build --symlink-install`
 
 ## Usage
 
